@@ -12,7 +12,7 @@ services:
       start_period: 10s
     volumes:
       - ./pizzas-db/sql:/docker-entrypoint-initdb.d #initialise la base de données avec les données SQL (pizzas-db/sql)
-    #   #- ./pizzas-db/data:/var/lib/mysql
+    #   #- ./pizzas-db/data:/var/lib/mysql #décommenter pour sauvegarder les fichiers de la base de données
     networks:
       - shrp
 

@@ -7,11 +7,13 @@ const factory = createFactory();
 
 export default factory.createHandlers(async (c) => {
   try {
-    const { id } = c.req.param();
+    const id: number | undefined = Number(c.req.param("id"));
 
-    const pizza: Pizza | undefined = pizzasCollection.find(
-      (p) => p.id === Number(id)
-    );
+    if (!id) {
+      throw new Error("Missing id");
+    }
+
+    const pizza: Pizza | undefined = pizzasCollection.find((p) => p.id === id);
 
     if (!pizza) {
       throw new Error(`Pizza does not exist`);
@@ -21,6 +23,9 @@ export default factory.createHandlers(async (c) => {
     if (error instanceof Error) {
       if (error.message === `Pizza does not exist`) {
         throw new HTTPException(404);
+      }
+      if (error.message === `Missing id`) {
+        throw new HTTPException(400);
       }
     }
     throw new HTTPException(500);
