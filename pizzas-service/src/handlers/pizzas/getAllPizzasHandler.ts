@@ -1,7 +1,7 @@
 import { createFactory } from "hono/factory";
 import { HTTPException } from "hono/http-exception";
 import type { Pizza } from "../../entities/Pizza";
-import pizzasCollection from "../../data/pizzas";
+import pizzasCollection from "../../static-data/pizzas";
 
 const factory = createFactory();
 

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Architecture Distribuée Starter Kit",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
