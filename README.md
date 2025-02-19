@@ -1,6 +1,6 @@
 # Architecture Distribuée - Starter Kit
 
-Projet modèle d'Architecture Distribuée à compléter (ex: connecter le service à la base de données...).
+Modèle d'Architecture Distribuée à compléter (ex: connecter le service à la base de données...).
 
 ## Installations
 
