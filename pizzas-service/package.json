@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "watch": "bun run --watch src/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist --target=node",
+    "start": "ts-node src/index.ts"
+  },
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "hono": "^4.7.2",
+    "mysql2": "^3.12.0"
+  }
+}

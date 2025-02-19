@@ -1,0 +1,47 @@
+services:
+  pizzas-db:
+    #restart: always #activer uniquement en production
+    image: mariadb
+    env_file:
+      - ./pizzas-db/.env
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./pizzas-db/sql:/docker-entrypoint-initdb.d #initialise la base de données avec les données SQL (pizzas-db/sql)
+    #   #- ./pizzas-db/data:/var/lib/mysql
+    networks:
+      - shrp
+
+  pizzas-service:
+    #restart: always #activer uniquement en production
+    build:
+      context: pizzas-service
+      dockerfile: Dockerfile
+    volumes:
+      - ./pizzas-service:/app
+    ports:
+      - 3333:3000
+    env_file:
+      - ./pizzas-service/.env
+    networks:
+      - shrp
+    depends_on:
+      pizzas-db:
+        condition: service_healthy
+
+  adminer:
+    image: adminer
+    env_file:
+      - ./adminer/.env
+    ports:
+      - 8080:8080 # ne pas exposer le port en production
+    networks:
+      - shrp
+
+networks:
+  shrp:
+    driver: bridge
