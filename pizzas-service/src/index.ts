@@ -21,7 +21,7 @@ app.notFound((c) => {
 app.route("/pizzas", pizzasRoutes);
 
 app.get("/", (c) => {
-  return c.text("Pizzas Service");
+  return c.json({ message: "Pizzas API" });
 });
 
 //Erreur 405 (Method not allowed) retournée pour toutes les autres routes
